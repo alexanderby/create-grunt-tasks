@@ -1,0 +1,33 @@
+{
+  "name": "create-grunt-tasks",
+  "version": "0.5.0",
+  "description": "Create Grunt tasks as a chain of sub-tasks",
+  "keywords": [
+    "grunt",
+    "create",
+    "task",
+    "tasks",
+    "chain",
+    "pipe",
+	"sequence"
+  ],
+  "license": "ISC",
+  "author": {
+    "name": "Alexander Shutov",
+    "email": "shutovby@gmail.com",
+    "url": "shutov.by"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexanderby/create-grunt-tasks.git"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "load-grunt-tasks": "^3.1.0"
+  }
+}
