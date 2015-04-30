@@ -258,7 +258,7 @@ module.exports = function (grunt) {
 
 ## Changelog
 
-##### 0.6.0
+##### 0.6.1
 - Added `other(taskName)` method for registering tasks that contain another tasks.
 
 ##### 0.5.0
