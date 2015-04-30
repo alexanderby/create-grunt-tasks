@@ -21,21 +21,15 @@ var SubTaskRegistrar = (function () {
     function SubTaskRegistrar(taskRegistrar, taskName) {
         this.taskName = taskName;
         this.taskRegistrar = taskRegistrar;
-        this.pluginsUsageCount = {};
+        this.subTasksCount = 0;
     }
     /**
      * Creates a sub-task.
      */
     SubTaskRegistrar.prototype.sub = function (plugin, options) {
-        // Increment plugin usage count
-        if (!(plugin in this.pluginsUsageCount)) {
-            this.pluginsUsageCount[plugin] = -1;
-        }
-        this.pluginsUsageCount[plugin]++;
-
         // Set options
         var task = this.taskName;
-        var command = task + '_sub' + this.pluginsUsageCount[plugin];
+        var command = task + '_sub' + this.subTasksCount++;
         this.taskRegistrar.pluginsConfigs[plugin] = this.taskRegistrar.pluginsConfigs[plugin] || {};
         this.taskRegistrar.pluginsConfigs[plugin][command] = options;
 
