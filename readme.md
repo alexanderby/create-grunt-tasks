@@ -15,43 +15,43 @@ $ npm install create-grunt-tasks --save-dev
 ## Usage
 
 Load module:
-```
+```js
 var createTasks = require('create-grunt-tasks');
 ```
 
 Start tasks registration:
-```
+```js
 module.exports = function (grunt) {
     createTasks(grunt, function(create) {
 ```
 
 Here `create` is an instance of `TaskRegistrar` class.
 Now create task "taskName":
-```
+```js
         var task = create.task('taskName');
 ```
 
 Method `task(taskName)` starts composing single task configuration. It returns an instance of `SubTaskRegistrar`.
 Now we add a sub-task, which uses plug-in "pluginName".:
-```
+```js
         task.sub('pluginName', { /* plug-in options */ });
 ```
 
 Method `sub()` returns `SubTaskRegistrar` itself, so it is possible to add multiple sub-tasks:
-```
+```js
         task.sub('pluginName', { /* plug-in options */ })
 		    .sub('otherPlugin', { /* other plug-in options */ });
 ```
 
 It is also possible to pass another task name by using the `other(taskName)` method:
-```
+```js
         complexTask
 		    .other('task1')
 		    .other('task2');
 ```
 
 Finally `gruntfile.js` may look like this:
-```
+```js
 module.exports = function (grunt) {
     require('create-grunt-tasks')(grunt, function(create) {
 	
