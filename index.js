@@ -35,13 +35,20 @@ var SubTaskRegistrar = (function () {
 
         // Set options
         var task = this.taskName;
-        var command = task + this.pluginsUsageCount[plugin];
+        var command = task + '_sub' + this.pluginsUsageCount[plugin];
         this.taskRegistrar.pluginsConfigs[plugin] = this.taskRegistrar.pluginsConfigs[plugin] || {};
         this.taskRegistrar.pluginsConfigs[plugin][command] = options;
 
         // Set sub-task name
         var subTaskName = plugin + ':' + command;
         this.taskRegistrar.tasksSubTasks[task].push(subTaskName);
+        return this;
+    };
+    /**
+     * Adds another task to a list of sub-tasks.
+     */
+    SubTaskRegistrar.prototype.other = function (otherTaskName) {
+        this.taskRegistrar.tasksSubTasks[this.taskName].push(otherTaskName);
         return this;
     };
     return SubTaskRegistrar;
