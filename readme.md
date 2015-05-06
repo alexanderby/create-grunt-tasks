@@ -27,7 +27,7 @@ module.exports = function (grunt) {
             
         create.task('task2')                        // Create task "task2":
             .sub('plugin1', { /* options */})       // configure plug-in "plugin1",
-            .sub('plugin2', { /* options */});      // configure plug-in "plugin2".
+            .sub('plugin2', { /* options */})       // configure plug-in "plugin2".
             .sub('plugin1', { /* options */});      // configure "plugin1" again.
             
         create.task('complexTask')                  // Create task "complexTask":
@@ -246,13 +246,13 @@ module.exports = function (grunt) {
 
 ## Changelog
 
-##### 0.7.0
+##### 0.7.1
 - Pass function to `sub()` method for registering a task function.
 - Pass task name to `sub()` method to include another task.
 - `other()` method is obsolete.
 
 ##### 0.6.2
-- Added `other(taskName)` method to register tasks that contain another tasks.
+- Added `other(taskName)` method for registering tasks that contain other tasks.
 
 ##### 0.5.0
 - Released.
