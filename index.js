@@ -24,22 +24,54 @@ var SubTaskRegistrar = (function () {
         this.subTasksCount = 0;
     }
     /**
-     * Creates a sub-task.
+     * Confugures a sub-task.
      */
-    SubTaskRegistrar.prototype.sub = function (plugin, options) {
-        // Set options
-        var task = this.taskName;
-        var command = task + '_sub' + this.subTasksCount++;
-        this.taskRegistrar.pluginsConfigs[plugin] = this.taskRegistrar.pluginsConfigs[plugin] || {};
-        this.taskRegistrar.pluginsConfigs[plugin][command] = options;
+    SubTaskRegistrar.prototype.sub = function (pluginOrTaskOrFunc, options) {
+        if (typeof pluginOrTaskOrFunc === 'function') {
 
-        // Set sub-task name
-        var subTaskName = plugin + ':' + command;
-        this.taskRegistrar.tasksSubTasks[task].push(subTaskName);
+            //
+            // Configure a task function
+
+            var func = pluginOrTaskOrFunc;
+            var funcTaskName = this.taskName + '_sub' + this.subTasksCount;
+            this.taskRegistrar.tasksSubTasks[funcTaskName] = func;
+            this.taskRegistrar.tasksSubTasks[this.taskName].push(funcTaskName);
+        }
+        else if (typeof pluginOrTaskOrFunc === 'string') {
+
+            if (options === void (0)) {
+
+                //
+                // Include another task
+
+                var otherTask = pluginOrTaskOrFunc;
+                this.taskRegistrar.tasksSubTasks[this.taskName].push(otherTask);
+            }
+            else {
+
+                //
+                // Configure a plug-in
+
+                var plugin = pluginOrTaskOrFunc;
+
+                // Set options
+                var configName = this.taskName + '_sub' + this.subTasksCount;
+                this.taskRegistrar.pluginsConfigs[plugin] = this.taskRegistrar.pluginsConfigs[plugin] || {};
+                this.taskRegistrar.pluginsConfigs[plugin][configName] = options;
+
+                // Set sub-task name
+                var subTaskName = plugin + ':' + configName;
+                this.taskRegistrar.tasksSubTasks[this.taskName].push(subTaskName);
+            }
+        }
+        else {
+            throw new Error('First argument to "sub()" must be a function, task name or a plug-in name.')
+        }
+        this.subTasksCount++;
         return this;
     };
     /**
-     * Adds another task to a list of sub-tasks.
+     * (Obsolete) Adds another task to a list of sub-tasks.
      */
     SubTaskRegistrar.prototype.other = function (otherTaskName) {
         this.taskRegistrar.tasksSubTasks[this.taskName].push(otherTaskName);
