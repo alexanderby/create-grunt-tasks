@@ -3,7 +3,7 @@ var loadTasks = require('load-grunt-tasks');
 
 var TaskRegistrar = (function () {
     function TaskRegistrar(grunt) {
-        this.pluginsConfigs = { pkg: grunt.file.readJSON('package.JSON') };
+        this.pluginsConfigs = { pkg: grunt.file.readJSON('package.json') };
         this.tasksSubTasks = {};
     }
     /**
