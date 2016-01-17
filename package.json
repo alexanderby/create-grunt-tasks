@@ -1,6 +1,6 @@
 {
   "name": "create-grunt-tasks",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Create Grunt tasks as a chain of sub-tasks",
   "keywords": [
     "grunt",
@@ -10,7 +10,9 @@
     "tasks",
     "chain",
     "pipe",
-	"sequence"
+    "sequence",
+    "simple",
+    "simplify"
   ],
   "license": "ISC",
   "author": {
